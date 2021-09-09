@@ -2,33 +2,33 @@
 title: GitOps
 linktitle: GitOps
 type: docs
-description: GitOps overview
+description: Visão Geral GitOps 
 weight: 100
 ---
 
-The idea of GitOps is to treat everything as source code, including your infrastructure, and check it into git and version it. 
+A ideia de GitOps é tratar tudo como código fonte, incuindo sua infraestrutura, e adicionado e versionando no git.
 
-So rather than connecting to a machine in your cluster, you make changes via Pull Requests in git. This means:
+Então, ao invés conectar em um servidor do cluster, você faz as mudanças via Pull Request no git. Isso significa que:
 
-* every change is audited so you can see who changed what, when and why
-* its easy to revert changes to your infrastructure if things go bad
-* teams can easily review changes to work more effectively as a team, share knowledge and get better feedback
+* todo mudança é auditável, então você pode ver quem mudou o que, quando e porquê
+* é fácil voltar as mudanças na infraestrutura se as coisas vão mal
+* times podem facilmente revisar mudanças para funcionar melhor como um time, compartilhando conhecimento e recebendo melhores críticas
 
-## Challenges
+## Desafios
 
-### Secrets
+### Segredos
 
-One of the biggest challenges with GitOps is dealing with secrets. 
+Um dos maiores desafios com GitOps é lidar com os segredos.
 
-You really want to check in all of your source code into git. But you really don't want to check in your secrets (user, passwords, tokens, certificates etc) into git - particularly public repositories!
+Você realmente quer adicionar todo o código fonte está no git. Mas você não quer realmente adicionar os seus segredos (usuários, senhas, chaves, certificados, etc) no git - particularmente em um repositório público.
 
-There are techniques like [helm sealed secrets](https://github.com/bitnami-labs/sealed-secrets) so that you can encrypt secrets for storage in git. 
+Existem técnicas como helm sealed secrets](https://github.com/bitnami-labs/sealed-secrets) para que você possa criptografar os segredos para armazenamento no git.
 
-However we are not huge fans of the UX of using this approach; its harder to modify or rotate secrets.
+Entretando nós não somos enormes fãs da experiência do usuário ao utilizar essa abordagem; é mais difícil modificar ou trocar os segredos.
 
-We prefer [using external secrets stores](/v3/admin/setup/secrets/) via the open source  [Kubernetes External Secrets](https://github.com/external-secrets/kubernetes-external-secrets) project
+Nós preferimos [utilizar armazenamento externo de segredos](/v3/admin/setup/secrets/) através do projeto de código aberto [Kubernetes External Secrets](https://github.com/external-secrets/kubernetes-external-secrets) 
 
-This means that we [automatically convert Secret resources to ExternalSecrets which can then be stored safely in git](/v3/develop/faq/#why-does-jenkins-x-use-helmfile-template)
+Isso significa que nós [convertemos automaticamente os recursos Secret para ExternalSecrets o que pode ser armazenadode forma segura no git](/v3/develop/faq/#why-does-jenkins-x-use-helmfile-template)
 
 
 ### Source code 
