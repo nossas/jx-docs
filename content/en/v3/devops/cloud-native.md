@@ -11,9 +11,9 @@ Uma das recomendações do [Accelerate](/v3/devops/accelerate/) é sobre usar nu
 Aqui estão algumas das lições que aprendemos sobre usar bem nuvens.  
 ## Dê preferencia às nuvens do que kubernetes
 
-Você pode fazer o deploy da base de dados via a helm chart no seu cluster de kubernetes. Ou  você pode configurar seu provedor de nuvem para criar um base de dados gerenciável. 
+Você pode fazer o deploy da base de dados via a helm chart no seu cluster de kubernetes. Ou  você pode configurar seu provedor de serviços em nuvem para criar um base de dados gerenciável. 
 
-Você pode fazer o deploy, digamos,  [vault](https://www.vaultproject.io/) como helm charts  dentro do seu cluster de kubernetes. Ou você pode usar seu armazenamento secreto do provedor de nuvem como, por exemplo:
+Você pode fazer o deploy, digamos,  [vault](https://www.vaultproject.io/) como helm charts  dentro do seu cluster de kubernetes. Ou você pode usar seu armazenamento secreto do provedor de serviços em nuvem como, por exemplo:
 
 * Alibaba Cloud KMS Secret Manager
 * Amazon Secret Manager
@@ -22,35 +22,34 @@ Você pode fazer o deploy, digamos,  [vault](https://www.vaultproject.io/) como 
 
 Nós recomendamos que se você tiver escolha; vá com a versão em nuvem.
 
-O motivo principal é que essas coisas são de toda forma trabalhosas. Seu provedor de nuvem pode instalar, atualizar, fazero backup e gerenciar esses serviços para você. 
+O motivo principal é que essas coisas são de toda forma trabalhosas. Seu provedor de serviços em nuvem pode instalar, atualizar, fazero backup e gerenciar esses serviços para você. 
 
 Se você for com helm charts dentro do kubernetes então você precisa ter certeza de fazer o backup quer irá armazenar todos os dados  e testar seu backup e mecanismos de restauração. 
-### Prefer cloud databases
+### Prefira banco de dados na nuvem
 
-As your cloud provider can handle backups, upgrades and elastic scaling for you.
+Seu provedor de serviços em nuvem pode lidar com backups, atualizações e escalabilidade para você.
 
-### Prefer cloud secret stores 
+### Prefira armazenamento secreto em nuvem  
 
-Over installing, upgrading, backing up + managing your own Vault
+Ao invés de instalar, atualizar, fazer o backup e gerenciar seu próprio Cofre
 
-### Prefer cloud container registries
+### Prefira resgidtros de container em nuvem 
 
-Over installing and managing your own nexus / artifactory / harbor / chart museuem
+Ao invés de instalar e gerenciar seu própio  nexus / artifactory / harbor / chart museuem
 
-### Prefer hosted git hosting
+### Prefira serviços de  hospedagem de repositórios git
 
-Over installing and managing your own gitlab / gitea / bitbucket server
+Ao invés de instalar e gerenciar seu própio gitlab / gitea / bitbucket server 
 
-### Try avoid Persistent Volumes
+### Tente evitar Volumes Persistentes 
 
-Similar to the above; if you use cloud storage, cloud buckets, cloud container registries you have less data to backup since the cloud provider typically does this for you.
+Similar do acima; se você usar armazenamento em nuvem, buckets em nuvem, registros de containers em nuvem você tem menos dados para fazer o backup pois o provedor do servicço em nuvem tipicamente já faz pra você. 
 
-Remember that `Persistent Volume` resources in kubernetes are not free; you need to backup and manage them.
-                                                                       
+Lembre-se que o recurso de Volume Parsistente em kubernetes não são gratuitos; você precisa de fazer o backup e gerenciá-los.                                                     
 
-## Treat kubernetes clusters as cattle not pets
+## Trate clusters de kubernetes como gado não como animais de estimação
 
-Get used to the idea you can delete a kubernetes cluster at any time and recreate it quickly.
+Se acusteme com a ideia que você pode deletar seu clusters de kubernetes a qualquer momento e recriá-lo rapidamente.  
 
 e.g. to change region or machine type this will usually happen.
 
