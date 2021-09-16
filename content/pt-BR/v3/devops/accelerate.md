@@ -17,3 +17,11 @@ Anos de coleta de dados por equipes e organizações do mundo real que foram ana
 # Use o controle de versão para todos os artefatos
 
 O pessoal da Weaveworks cunhou o termo GitOps que amamos. Qualquer mudança em um ambiente, seja um novo aplicativo, atualização de versão, alteração de limite de recursos ou configuração de um simples aplicativo, deve ser gerada como uma solicitação pull para o Git, ter verificações executadas nele como uma forma de CI para ambientes e aprovado por uma equipe que tem controle sobre o que acontece no ambiente relacionado. Agora permitimos que a liderança tenha total rastreabilidade para qualquer mudança em um ambiente.
+
+# Automatize seu processo de deploy
+
+## Ambientes
+
+O Jenkins X irá, por meio do Git, criar ambientes automaticamente durante a instalação e tornar fácil a adição de novas utilizando `jx create environment`. Além disso, quando criamos novas aplicações por um quickstart (`jx create quickstart`), SpringBoot baseado em Java (`jx create spring`) ou importando aplicações existentes (`jx import`), Jenkins X irá automaticamente adicionar pipelines de CI/CD e as configurações dos trabalhos, repositórios git e webhooks para habilitar um processo de deploy automatizado.
+
+Pronto para utilizar, Jenkins X cria ambientes permanentes de Staging e Produção (customizáveis) assim como ambientes temporários para aplicações de visualização de Pull Requests.
