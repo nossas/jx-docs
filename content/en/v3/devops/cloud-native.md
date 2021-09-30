@@ -2,75 +2,69 @@
 title: Cloud Native
 linktitle: Cloud Native
 type: docs
-description: Cloud Native recommendations
+description: Recomendações Cloud Native 
 weight: 200
 ---
 
-One of the [Accelerate](/v3/devops/accelerate/) recommendations is around using the cloud well; letting developers use the cloud to solve software problems.
+Uma das recomendações do [Accelerate](/v3/devops/accelerate/) é sobre usar nuvens bem; deixando os desenvolvedores usar nuvens para resolver porblemas de software. 
 
-Here are a few of the lessons we have learnt about using the cloud well.
+Aqui estão algumas das lições que aprendemos sobre usar bem nuvens.  
+## Dê preferencia às nuvens do que kubernetes
 
+Você pode fazer o deploy da base de dados via a helm chart no seu cluster de kubernetes. Ou  você pode configurar seu provedor de serviços em nuvem para criar um base de dados gerenciável. 
 
-## Prefer cloud over kubernetes
-
-You can deploy a database via a helm chart in your kubernetes cluster. Or you can configure your cloud provider to create a managed database offering.
-
-You can deploy, say, [vault](https://www.vaultproject.io/) as helm charts inside your kubernetes cluster. Or you can use your cloud providers secret store solution such as:
+Você pode fazer o deploy, digamos,  [vault](https://www.vaultproject.io/) como helm charts  dentro do seu cluster de kubernetes. Ou você pode usar seu armazenamento secreto do provedor de serviços em nuvem como, por exemplo:
 
 * Alibaba Cloud KMS Secret Manager
 * Amazon Secret Manager
 * Azure Key Vault
 * GCP Secret Manager
 
-We recommend that if you have a choice; go with the cloud version. 
+Nós recomendamos que se você tiver escolha; vá com a versão em nuvem.
 
-The main reason is these kinds of things are undifferentiated heavy lifting. Your cloud provider already can install, upgrade, backup and manage these services for you.
+O motivo principal é que essas coisas são de toda forma trabalhosas. Seu provedor de serviços em nuvem pode instalar, atualizar, fazero backup e gerenciar esses serviços para você. 
 
-If you go with helm charts inside kubernetes then you need to make sure you backup to long term storage all the data (e.g. every Persistent Volume) and test out your backup and restore mechanisms.
+Se você for com helm charts dentro do kubernetes então você precisa ter certeza de fazer o backup quer irá armazenar todos os dados  e testar seu backup e mecanismos de restauração. 
+### Prefira banco de dados na nuvem
 
+Seu provedor de serviços em nuvem pode lidar com backups, atualizações e escalabilidade para você.
 
-### Prefer cloud databases
+### Prefira armazenamento secreto em nuvem  
 
-As your cloud provider can handle backups, upgrades and elastic scaling for you.
+Ao invés de instalar, atualizar, fazer o backup e gerenciar seu próprio Cofre
 
-### Prefer cloud secret stores 
+### Prefira resgidtros de container em nuvem 
 
-Over installing, upgrading, backing up + managing your own Vault
+Ao invés de instalar e gerenciar seu própio  nexus / artifactory / harbor / chart museuem
 
-### Prefer cloud container registries
+### Prefira serviços de  hospedagem de repositórios git
 
-Over installing and managing your own nexus / artifactory / harbor / chart museuem
+Ao invés de instalar e gerenciar seu própio gitlab / gitea / bitbucket server 
 
-### Prefer hosted git hosting
+### Tente evitar Volumes Persistentes 
 
-Over installing and managing your own gitlab / gitea / bitbucket server
+Similar do acima; se você usar armazenamento em nuvem, buckets em nuvem, registros de containers em nuvem você tem menos dados para fazer o backup pois o provedor do servicço em nuvem tipicamente já faz pra você. 
 
-### Try avoid Persistent Volumes
+Lembre-se que o recurso de Volume Parsistente em kubernetes não são gratuitos; você precisa de fazer o backup e gerenciá-los.                                                     
 
-Similar to the above; if you use cloud storage, cloud buckets, cloud container registries you have less data to backup since the cloud provider typically does this for you.
+## Trate clusters de kubernetes como gado não como animais de estimação
 
-Remember that `Persistent Volume` resources in kubernetes are not free; you need to backup and manage them.
-                                                                       
+Se acusteme com a ideia que você pode deletar seu clusters de kubernetes a qualquer momento e recriá-lo rapidamente.  
 
-## Treat kubernetes clusters as cattle not pets
-
-Get used to the idea you can delete a kubernetes cluster at any time and recreate it quickly.
-
-e.g. to change region or machine type this will usually happen.
+Exemplo: para mudar a região ou a tipo da máquina isso deve acontecer. 
 
 
-## Map IAM Roles to kubernetes Service Accounts
+##  Mapear  os papéis IAM da contas dos Kubernetes   Map IAM Roles to kubernetes Service Accounts 
 
-On AWS use [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) (IRSA)
+Para AWS use [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) (IRSA)
 
-On GCP use [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) (WLI)
+Para GCP use [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) (WLI)
 
-In both cases this maps cloud IAM roles to kubernetes `ServiceAccount` resources using annotations. 
+Nos dois casos os papéis IAM  são mapeados para kubernetes são mapeados para os recursos `ServiceAccount` do kubernetes usando anotações.  
 
-This means that you don't have to populate your kubernetes cluster with cluster-admin style cloud IAM secrets - which makes your system more secure and reduces the possibility of accidentally exposing a secret.
+Isso significa que você não precisa popular seu cluster de kubernets com segredos de IAM de nuvem no estilo cluster-admin - o que deixa o sistema mais seguro e reduz a possibilidade de acidendalmente expor um segredo.
 
-Note that if you use [Jenkins X to configure your clusters with Terraform and GitOps](/v3/admin/) then you get this out of the box! 
-
+Note que se você usar  [Jenkins X para configurar seus clusters com Terraform e GitOps](/v3/admin/)  aí  você tira isso da caixa! 
 ## Terraform for cloud infrastructure
 
 We are all using an increasing amount of cloud infrastructure. You can use your cloud providers CLI or web console to set things up. However it's hard to manage and version.
