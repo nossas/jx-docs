@@ -26,6 +26,6 @@ O Jenkins X irá, por meio do Git, criar ambientes automaticamente durante a ins
 
 Pronto para utilizar, Jenkins X cria ambientes permanentes de Staging e Produção (customizáveis) assim como ambientes temporários para aplicações de visualização de Pull Requests.
 
-### Previews Environments
+### Ambientes de visualização
 
-Nós estamos tentando mover o máximo de testes, segurança, validação e experimentação para uma mudança antes dela ser mergeada na master. Com o uso de ambientes de visualização temporários criados dinamicamente, qualquer Pull Request pode ter uma versão de visualização criada e implantada, incluindo bibliotecas que alimentam um aplicativo downstream implementável. Isso significa que nós podemos revisar código, testar e colaborar melhor com todas as equipes que estão envolvidas no acordo de que a mudança pode acontecer.
+Nós estamos tentando realizar o máximo de testes, segurança, validação e experimentação para uma mudança antes dela ser mergeada na master. Com o uso de ambientes de visualização temporários criados dinamicamente, qualquer Pull Request pode ter uma versão de visualização criada e implantada, incluindo bibliotecas que alimentam um aplicativo downstream implementável. Isso significa que nós podemos revisar código, testar e colaborar melhor com todas as equipes que estão envolvidas no acordo de que a mudança pode acontecer.
