@@ -51,21 +51,20 @@ Lembre-se que o recurso de Volume Parsistente em kubernetes não são gratuitos;
 
 Se acusteme com a ideia que você pode deletar seu clusters de kubernetes a qualquer momento e recriá-lo rapidamente.  
 
-e.g. to change region or machine type this will usually happen.
+Exemplo: para mudar a região ou a tipo da máquina isso deve acontecer. 
 
 
-## Map IAM Roles to kubernetes Service Accounts
+##  Mapear  os papéis IAM da contas dos Kubernetes   Map IAM Roles to kubernetes Service Accounts 
 
-On AWS use [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) (IRSA)
+Para AWS use [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) (IRSA)
 
-On GCP use [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) (WLI)
+Para GCP use [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) (WLI)
 
-In both cases this maps cloud IAM roles to kubernetes `ServiceAccount` resources using annotations. 
+Nos dois casos os papéis IAM  são mapeados para kubernetes são mapeados para os recursos `ServiceAccount` do kubernetes usando anotações.  
 
-This means that you don't have to populate your kubernetes cluster with cluster-admin style cloud IAM secrets - which makes your system more secure and reduces the possibility of accidentally exposing a secret.
+Isso significa que você não precisa popular seu cluster de kubernets com segredos de IAM de nuvem no estilo cluster-admin - o que deixa o sistema mais seguro e reduz a possibilidade de acidendalmente expor um segredo.
 
-Note that if you use [Jenkins X to configure your clusters with Terraform and GitOps](/v3/admin/) then you get this out of the box! 
-
+Note que se você usar  [Jenkins X para configurar seus clusters com Terraform e GitOps](/v3/admin/)  aí  você tira isso da caixa! 
 ## Terraform for cloud infrastructure
 
 We are all using an increasing amount of cloud infrastructure. You can use your cloud providers CLI or web console to set things up. However it's hard to manage and version.
