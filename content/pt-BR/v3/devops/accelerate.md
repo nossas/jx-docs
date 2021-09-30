@@ -25,3 +25,7 @@ O pessoal da Weaveworks cunhou o termo GitOps que amamos. Qualquer mudança em u
 O Jenkins X irá, por meio do Git, criar ambientes automaticamente durante a instalação e tornar fácil a adição de novas utilizando `jx create environment`. Além disso, quando criamos novas aplicações por um quickstart (`jx create quickstart`), SpringBoot baseado em Java (`jx create spring`) ou importando aplicações existentes (`jx import`), Jenkins X irá automaticamente adicionar pipelines de CI/CD e as configurações dos trabalhos, repositórios git e webhooks para habilitar um processo de deploy automatizado.
 
 Pronto para utilizar, Jenkins X cria ambientes permanentes de Staging e Produção (customizáveis) assim como ambientes temporários para aplicações de visualização de Pull Requests.
+
+### Previews Environments
+
+Nós estamos tentando mover o máximo de testes, segurança, validação e experimentação para uma mudança antes dela ser mergeada na master. Com o uso de ambientes de visualização temporários criados dinamicamente, qualquer Pull Request pode ter uma versão de visualização criada e implantada, incluindo bibliotecas que alimentam um aplicativo downstream implementável. Isso significa que nós podemos revisar código, testar e colaborar melhor com todas as equipes que estão envolvidas no acordo de que a mudança pode acontecer.
